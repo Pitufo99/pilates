@@ -1,0 +1,1403 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Essence Studio - Empower Yourself</title>
+    <style>
+        :root {
+            --primary: #C1B1A4;
+            --secondary: #FFFFFF;
+            --accent: #898989;
+            --dark: #5A5A5A;
+            --light: #F8F8F8;
+            --success: #4CAF50;
+            --warning: #FF9800;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--secondary);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: var(--secondary);
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: #B0A095;
+            transform: translateY(-3px);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: var(--secondary);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--dark);
+            margin-bottom: 15px;
+        }
+        
+        .section-title p {
+            color: var(--accent);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        /* Header */
+        header {
+            background-color: var(--secondary);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            position: relative;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+        
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--primary);
+            background-color: rgba(193, 177, 164, 0.1);
+        }
+        
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: var(--dark);
+        }
+        
+        /* Mobile Menu */
+        .mobile-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background-color: var(--secondary);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-top: 1px solid rgba(193, 177, 164, 0.2);
+        }
+        
+        .mobile-menu.active {
+            display: block;
+        }
+        
+        .mobile-nav-links {
+            list-style: none;
+            padding: 20px;
+        }
+        
+        .mobile-nav-links li {
+            margin-bottom: 15px;
+        }
+        
+        .mobile-nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            display: block;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+        
+        .mobile-nav-links a:hover, .mobile-nav-links a.active {
+            color: var(--primary);
+            background-color: rgba(193, 177, 164, 0.1);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(193, 177, 164, 0.8), rgba(193, 177, 164, 0.8)), url('https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--secondary);
+        }
+        
+        .hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            max-width: 600px;
+        }
+        
+        /* Page Content */
+        .page {
+            display: none;
+            padding: 80px 0;
+            min-height: 70vh;
+        }
+        
+        .page.active {
+            display: block;
+        }
+        
+        /* About Page */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+        
+        .about-img {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .about-img img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        /* Services Page */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .service-card {
+            background-color: var(--secondary);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            border: 1px solid rgba(193, 177, 164, 0.2);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+        
+        .service-img {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .service-content {
+            padding: 25px;
+        }
+        
+        .service-content h3 {
+            color: var(--dark);
+            margin-bottom: 15px;
+        }
+        
+        .capacity {
+            display: inline-block;
+            background: var(--light);
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+        
+        /* Booking Page */
+        .booking-section {
+            background-color: var(--light);
+        }
+        
+        .booking-steps {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+        }
+        
+        .step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0 20px;
+            position: relative;
+        }
+        
+        .step-number {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: var(--secondary);
+        }
+        
+        .step.active .step-number {
+            background-color: var(--primary);
+            color: var(--secondary);
+        }
+        
+        .step.completed .step-number {
+            background-color: var(--dark);
+            color: var(--secondary);
+        }
+        
+        .step:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 70px;
+            width: 100px;
+            height: 2px;
+            background-color: var(--accent);
+        }
+        
+        .step.completed:not(:last-child)::after {
+            background-color: var(--dark);
+        }
+        
+        .booking-form-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: var(--secondary);
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            padding: 40px;
+            border: 1px solid rgba(193, 177, 164, 0.2);
+        }
+        
+        .form-step {
+            display: none;
+        }
+        
+        .form-step.active {
+            display: block;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--dark);
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--accent);
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+        
+        .class-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .class-option {
+            border: 2px solid var(--accent);
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .class-option:hover {
+            border-color: var(--primary);
+        }
+        
+        .class-option.selected {
+            border-color: var(--primary);
+            background-color: rgba(193, 177, 164, 0.1);
+        }
+        
+        .class-option.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .calendar {
+            margin-top: 20px;
+        }
+        
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 5px;
+        }
+        
+        .calendar-day {
+            text-align: center;
+            padding: 10px 0;
+            font-weight: bold;
+            color: var(--dark);
+        }
+        
+        .calendar-date {
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .calendar-date:hover {
+            background-color: rgba(193, 177, 164, 0.2);
+        }
+        
+        .calendar-date.selected {
+            background-color: var(--primary);
+            color: var(--secondary);
+        }
+        
+        .calendar-date.disabled {
+            color: #ccc;
+            cursor: not-allowed;
+        }
+        
+        .calendar-date.disabled:hover {
+            background-color: transparent;
+        }
+        
+        .available-classes {
+            margin-top: 30px;
+        }
+        
+        .class-slot {
+            border: 1px solid var(--accent);
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s;
+        }
+        
+        .class-slot:hover {
+            border-color: var(--primary);
+        }
+        
+        .class-slot.selected {
+            border-color: var(--primary);
+            background-color: rgba(193, 177, 164, 0.1);
+        }
+        
+        .class-slot.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .class-info {
+            flex-grow: 1;
+        }
+        
+        .class-time {
+            font-weight: bold;
+            color: var(--dark);
+        }
+        
+        .class-availability {
+            color: var(--accent);
+            font-size: 0.9rem;
+        }
+        
+        .class-full {
+            color: var(--warning);
+        }
+        
+        .class-available {
+            color: var(--success);
+        }
+        
+        .form-navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+        
+        .confirmation-details {
+            background-color: rgba(193, 177, 164, 0.1);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border-left: 4px solid var(--primary);
+        }
+        
+        .confirmation-details h3 {
+            color: var(--dark);
+            margin-bottom: 15px;
+        }
+        
+        .confirmation-details p {
+            margin-bottom: 10px;
+        }
+        
+        .confirmation-code {
+            background: var(--dark);
+            color: var(--secondary);
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            letter-spacing: 3px;
+            margin: 20px 0;
+        }
+        
+        .cancellation-notice {
+            background-color: rgba(255, 152, 0, 0.1);
+            border-left: 4px solid var(--warning);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        /* Contact Page */
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+        }
+        
+        .contact-info h3 {
+            color: var(--dark);
+            margin-bottom: 20px;
+        }
+        
+        .contact-info p {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .contact-info i {
+            margin-right: 10px;
+            color: var(--primary);
+        }
+        
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid var(--accent);
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        
+        .contact-form textarea {
+            height: 150px;
+            resize: vertical;
+        }
+        
+        /* Announcements */
+        .announcements {
+            background-color: rgba(255, 152, 0, 0.1);
+            border-left: 4px solid var(--warning);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 30px 0;
+        }
+        
+        .announcements h3 {
+            color: var(--dark);
+            margin-bottom: 10px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: var(--secondary);
+            padding: 50px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-section h3 {
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .footer-section a{
+            text-decoration: none;
+            color: var(--secundary);
+            transition: color 0.3s;
+        
+        
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hamburger {
+                display: block;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.2rem;
+            }
+            
+            .about-content,
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .booking-steps {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .step {
+                margin: 10px 0;
+            }
+            
+            .step:not(:last-child)::after {
+                display: none;
+            }
+            
+            .booking-form-container {
+                padding: 20px;
+            }
+            
+            .class-slot {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .class-slot .btn {
+                margin-top: 10px;
+                align-self: flex-end;
+            }
+            
+            .calendar-header h4 {
+                font-size: 1.1rem;
+            }
+            
+            .confirmation-code {
+                font-size: 1.2rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 1.8rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .btn {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <a href="#" class="logo" onclick="showPage('home')">Essence Studio</a>
+                <ul class="nav-links">
+                    <li><a href="#" class="active" onclick="showPage('home')">Inicio</a></li>
+                    <li><a href="#" onclick="showPage('about')">Sobre Nosotros</a></li>
+                    <li><a href="#" onclick="showPage('services')">Clases</a></li>
+                    <li><a href="#" onclick="showPage('booking')">Agenda Ahora</a></li>
+                    <li><a href="#" onclick="showPage('contact')">Contacto</a></li>
+                </ul>
+                <div class="hamburger" onclick="toggleMobileMenu()">
+                    <span>☰</span>
+                </div>
+                
+                <!-- Menú Mobile -->
+                <div class="mobile-menu" id="mobileMenu">
+                    <ul class="mobile-nav-links">
+                        <li><a href="#" class="active" onclick="showPage('home'); toggleMobileMenu()">Inicio</a></li>
+                        <li><a href="#" onclick="showPage('about'); toggleMobileMenu()">Sobre Nosotros</a></li>
+                        <li><a href="#" onclick="showPage('services'); toggleMobileMenu()">Clases</a></li>
+                        <li><a href="#" onclick="showPage('booking'); toggleMobileMenu()">Agenda Ahora</a></li>
+                        <li><a href="#" onclick="showPage('contact'); toggleMobileMenu()">Contacto</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Página de Inicio -->
+    <section id="home" class="page active">
+        <div class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>Empower Yourself</h1>
+                    <p>Descubre tu esencia a través del movimiento consciente. Clases de Pilates Reformers, Hot Pilates y Yoga en un espacio diseñado para tu bienestar.</p>
+                    <a href="#" class="btn" onclick="showPage('booking')">Reserva tu clase ahora</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="container" style="padding: 80px 0;">
+            <div class="section-title">
+                <h2>Bienvenido a Essence Studio</h2>
+                <p>Un espacio donde cuerpo, mente y espíritu se conectan a través del movimiento consciente</p>
+            </div>
+            
+            <div class="announcements">
+                <h3>📢 Recordatorio Importante</h3>
+                <p>Para garantizar la calidad de nuestras clases y el acceso de todos, es necesario cancelar con 12 horas de anticipación si no podrás asistir. Las cancelaciones de última hora afectan tu historial de reservas.</p>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-img" style="background-image: url('https://images.unsplash.com/photo-1549576490-b0b4831ef60a?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80');"></div>
+                    <div class="service-content">
+                        <h3>Pilates Reformers</h3>
+                        <span class="capacity">Capacidad: 4 personas</span>
+                        <p>Clases personalizadas con equipos reformers para un trabajo preciso y efectivo.</p>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-img" style="background-image: url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80');"></div>
+                    <div class="service-content">
+                        <h3>Hot Pilates</h3>
+                        <span class="capacity">Capacidad: 8 personas</span>
+                        <p>Pilates en ambiente cálido para mayor flexibilidad y desintoxicación.</p>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-img" style="background-image: url('https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80');"></div>
+                    <div class="service-content">
+                        <h3>Yoga</h3>
+                        <span class="capacity">Capacidad: 8 personas</span>
+                        <p>Diferentes estilos de yoga para conectar cuerpo y mente.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Página Sobre Nosotros -->
+    <section id="about" class="page">
+        <div class="container">
+            <div class="section-title">
+                <h2>Sobre Nosotros</h2>
+                <p>Conoce la filosofía detrás de Essence Studio</p>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Nuestra Esencia</h3>
+                    <p>En Essence Studio creemos que cada persona tiene un potencial único esperando ser descubierto. Nuestro enfoque va más allá del ejercicio físico; buscamos conectar cuerpo, mente y espíritu a través del movimiento consciente.</p>
+                    <p>Fundado en 2020, nuestro estudio nació de la pasión por crear un espacio seguro donde las personas puedan explorar sus límites, superar barreras y descubrir su verdadera esencia.</p>
+                    <p>Nuestro equipo de instructores certificados está comprometido con tu crecimiento personal y te acompañará en cada paso de tu journey hacia una vida más plena y equilibrada.</p>
+                    <a href="#" class="btn" onclick="showPage('booking')">Únete a Nosotros</a>
+                </div>
+                <div class="about-img">
+                    <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Essence Studio">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Página Clases -->
+    <section id="services" class="page">
+        <div class="container">
+            <div class="section-title">
+                <h2>Nuestras Clases</h2>
+                <p>Ofrecemos una variedad de disciplinas adaptadas a todos los niveles</p>
+            </div>
+            
+            <div class="announcements">
+                <h3>💡 Sistema de Reservas</h3>
+                <p>Para garantizar tu lugar en las clases, recuerda que debes reservar con anticipación. Las clases de Reformers tienen capacidad para 4 personas, mientras que Hot Pilates y Yoga tienen capacidad para 8 personas.</p>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-img" style="background-image: url('https://images.unsplash.com/photo-1549576490-b0b4831ef60a?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80');"></div>
+                    <div class="service-content">
+                        <h3>Pilates Reformers</h3>
+                        <span class="capacity">Capacidad: 4 personas</span>
+                        <p>Trabajo preciso con equipos especializados para fortalecer el core, mejorar la postura y aumentar la flexibilidad.</p>
+                        <p><strong>Duración:</strong> 60 minutos</p>
+                        <p><strong>Nivel:</strong> Todos los niveles</p>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-img" style="background-image: url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80');"></div>
+                    <div class="service-content">
+                        <h3>Hot Pilates</h3>
+                        <span class="capacity">Capacidad: 8 personas</span>
+                        <p>Pilates tradicional en una sala climatizada a 35°C para mayor flexibilidad y desintoxicación profunda.</p>
+                        <p><strong>Duración:</strong> 60 minutos</p>
+                        <p><strong>Nivel:</strong> Intermedio - Avanzado</p>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-img" style="background-image: url('https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80');"></div>
+                    <div class="service-content">
+                        <h3>Yoga Essence</h3>
+                        <span class="capacity">Capacidad: 8 personas</span>
+                        <p>Fusión de Hatha y Vinyasa Yoga adaptada para conectar con tu esencia interior a través de la respiración consciente.</p>
+                        <p><strong>Duración:</strong> 75 minutos</p>
+                        <p><strong>Nivel:</strong> Todos los niveles</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Página de Agendamiento -->
+    <section id="booking" class="page booking-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Reserva tu Clase</h2>
+                <p>Sigue estos sencillos pasos para agendar tu experiencia en Essence Studio</p>
+            </div>
+            
+            <div class="cancellation-notice">
+                <h3>⚠️ Política de Cancelación</h3>
+                <p>Para apartar tu cupo, es necesario realizar el pago por adelantado. Puedes cancelar hasta 12 horas antes de la clase sin penalización. Las cancelaciones con menos de 12 horas de anticipación no son reembolsables.</p>
+            </div>
+            
+            <div class="booking-steps">
+                <div class="step completed" id="step1">
+                    <div class="step-number">1</div>
+                    <div class="step-label">Seleccionar Fecha</div>
+                </div>
+                <div class="step active" id="step2">
+                    <div class="step-number">2</div>
+                    <div class="step-label">Elegir Clase</div>
+                </div>
+                <div class="step" id="step3">
+                    <div class="step-number">3</div>
+                    <div class="step-label">Tus Datos</div>
+                </div>
+                <div class="step" id="step4">
+                    <div class="step-number">4</div>
+                    <div class="step-label">Confirmación</div>
+                </div>
+            </div>
+            
+            <div class="booking-form-container">
+                <!-- Paso 1: Selección de fecha -->
+                <div class="form-step active" id="formStep1">
+                    <h3>Selecciona una fecha</h3>
+                    <p>Elige el día que deseas tomar tu clase</p>
+                    
+                    <div class="calendar">
+                        <div class="calendar-header">
+                            <button id="prevMonth">&lt;</button>
+                            <h4 id="currentMonth">Junio 2023</h4>
+                            <button id="nextMonth">&gt;</button>
+                        </div>
+                        <div class="calendar-grid" id="calendarDates">
+                            <!-- Las fechas se generan con JavaScript -->
+                        </div>
+                    </div>
+                    
+                    <div class="form-navigation">
+                        <button class="btn" onclick="nextStep(2)">Siguiente</button>
+                    </div>
+                </div>
+                
+                <!-- Paso 2: Selección de clase -->
+                <div class="form-step" id="formStep2">
+                    <h3>Clases disponibles para <span id="selectedDateDisplay">...</span></h3>
+                    <p>Selecciona la clase que deseas tomar</p>
+                    
+                    <div class="available-classes" id="availableClasses">
+                        <!-- Las clases disponibles se generan con JavaScript -->
+                    </div>
+                    
+                    <div class="form-navigation">
+                        <button class="btn btn-outline" onclick="prevStep(1)">Anterior</button>
+                        <button class="btn" onclick="nextStep(3)">Siguiente</button>
+                    </div>
+                </div>
+                
+                <!-- Paso 3: Información personal -->
+                <div class="form-step" id="formStep3">
+                    <h3>Tus datos</h3>
+                    <p>Completa tu información para finalizar la reserva</p>
+                    
+                    <div class="form-group">
+                        <label for="name">Nombre completo *</label>
+                        <input type="text" id="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Correo electrónico *</label>
+                        <input type="email" id="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Teléfono *</label>
+                        <input type="tel" id="phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="notes">Notas adicionales (opcional)</label>
+                        <textarea id="notes" placeholder="Lesiones previas, condiciones médicas, nivel de experiencia, etc."></textarea>
+                    </div>
+                    
+                    <div class="cancellation-notice">
+                        <p><strong>Recordatorio:</strong> Para confirmar tu reserva es necesario realizar el pago. Puedes cancelar hasta 12 horas antes sin penalización.</p>
+                    </div>
+                    
+                    <div class="form-navigation">
+                        <button class="btn btn-outline" onclick="prevStep(2)">Anterior</button>
+                        <button class="btn" onclick="nextStep(4)">Continuar al Pago</button>
+                    </div>
+                </div>
+                
+                <!-- Paso 4: Confirmación -->
+                <div class="form-step" id="formStep4">
+                    <h3>Confirma tu reserva</h3>
+                    <p>Revisa los detalles y completa tu reserva</p>
+                    
+                    <div class="confirmation-details">
+                        <h4>Detalles de tu clase</h4>
+                        <p id="confClassType"><strong>Clase:</strong> </p>
+                        <p id="confDate"><strong>Fecha:</strong> </p>
+                        <p id="confTime"><strong>Hora:</strong> </p>
+                        <p id="confDuration"><strong>Duración:</strong> </p>
+                        <p id="confInstructor"><strong>Instructor:</strong> </p>
+                    </div>
+                    
+                    <div class="confirmation-details">
+                        <h4>Tus datos</h4>
+                        <p id="confName"><strong>Nombre:</strong> </p>
+                        <p id="confEmail"><strong>Email:</strong> </p>
+                        <p id="confPhone"><strong>Teléfono:</strong> </p>
+                    </div>
+                    
+                    <div class="confirmation-code">
+                        <p>Tu código de confirmación:</p>
+                        <div id="bookingCode">ES-2023-001</div>
+                        <p style="font-size: 0.9rem; margin-top: 10px;">Presenta este código al llegar al estudio</p>
+                    </div>
+                    
+                    <div class="form-navigation">
+                        <button class="btn btn-outline" onclick="prevStep(3)">Anterior</button>
+                        <button class="btn" onclick="submitBooking()">Confirmar y Pagar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Página Contacto -->
+    <section id="contact" class="page">
+        <div class="container">
+            <div class="section-title">
+                <h2>Contacto</h2>
+                <p>Estamos aquí para responder todas tus preguntas</p>
+            </div>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>Información de Contacto</h3>
+                    <p><i>📍</i> Av. Wellness 123, Ciudad Essence</p>
+                    <p><i>📞</i> +1 234 567 890</p>
+                    <p><i>✉️</i> hola@essencestudio.com</p>
+                    <p><i>🕒</i> Lunes a Viernes: 6:00 - 22:00<br>Sábados: 7:00 - 20:00<br>Domingos: 8:00 - 14:00</p>
+                    <div class="map">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3023.9503398796587!2d-74.00594148458934!3d40.71278367933185!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25a316e12cd71%3A0x5b5c5f5b5f5b5f5b!2sNew%20York%2C%20NY%2C%20USA!5e0!3m2!1sen!2s!4v1622549401234!5m2!1sen!2s" width="100%" height="300" style="border:0; border-radius: 8px;" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <h3>Envíanos un mensaje</h3>
+                    <form id="contactForm">
+                        <input type="text" placeholder="Tu nombre" required>
+                        <input type="email" placeholder="Tu correo electrónico" required>
+                        <input type="text" placeholder="Asunto">
+                        <textarea placeholder="Tu mensaje" required></textarea>
+                        <button type="submit" class="btn">Enviar Mensaje</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Essence Studio</h3>
+                    <p>Empower Yourself - Descubre tu esencia a través del movimiento consciente.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Enlaces Rápidos</h3>
+                    <ul>
+                        <li><a href="#" onclick="showPage('home')">Inicio</a></li>
+                        <li><a href="#" onclick="showPage('about')">Sobre Nosotros</a></li>
+                        <li><a href="#" onclick="showPage('services')">Clases</a></li>
+                        <li><a href="#" onclick="showPage('booking')">Agenda Ahora</a></li>
+                        <li><a href="#" onclick="showPage('contact')">Contacto</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contacto</h3>
+                    <p>📍 Av. Wellness 123, Ciudad Essence</p>
+                    <p>📞 +1 234 567 890</p>
+                    <p>✉️ hola@essencestudio.com</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Síguenos</h3>
+                    <p>Conecta con nosotros en redes sociales</p>
+                    <div class="social-icons">
+                        <!-- Aquí irían los iconos de redes sociales -->
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Essence Studio. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Función para mostrar/ocultar el menú mobile
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.toggle('active');
+        }
+
+        // Cerrar menú mobile al hacer clic fuera de él
+        document.addEventListener('click', function(event) {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const hamburger = document.querySelector('.hamburger');
+            
+            if (!hamburger.contains(event.target) && !mobileMenu.contains(event.target)) {
+                mobileMenu.classList.remove('active');
+            }
+        });
+
+        // Navegación entre páginas
+        function showPage(pageId) {
+            // Ocultar todas las páginas
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            // Mostrar la página seleccionada
+            const targetPage = document.getElementById(pageId);
+            if (targetPage) {
+                targetPage.classList.add('active');
+            }
+            
+            // Actualizar navegación activa
+            document.querySelectorAll('.nav-links a, .mobile-nav-links a').forEach(link => {
+                link.classList.remove('active');
+            });
+            
+            // Encontrar y activar el enlace correspondiente
+            const activeLink = document.querySelector(`.nav-links a[onclick*="${pageId}"]`);
+            const mobileActiveLink = document.querySelector(`.mobile-nav-links a[onclick*="${pageId}"]`);
+            
+            if (activeLink) activeLink.classList.add('active');
+            if (mobileActiveLink) mobileActiveLink.classList.add('active');
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+            
+            return false;
+        }
+
+        // Variables globales para el agendamiento
+        let selectedDate = null;
+        let selectedClass = null;
+        let currentMonth = new Date().getMonth();
+        let currentYear = new Date().getFullYear();
+        
+        // Datos de clases disponibles (simulados)
+        const classTypes = {
+            'reformers': { 
+                name: 'Pilates Reformers', 
+                duration: '60 minutos', 
+                capacity: 4,
+                price: '$35'
+            },
+            'hot-pilates': { 
+                name: 'Hot Pilates', 
+                duration: '60 minutos', 
+                capacity: 8,
+                price: '$30'
+            },
+            'yoga': { 
+                name: 'Yoga Essence', 
+                duration: '75 minutos', 
+                capacity: 8,
+                price: '$25'
+            }
+        };
+        
+        // Navegación entre pasos del formulario
+        function nextStep(step) {
+            document.querySelectorAll('.form-step').forEach(formStep => {
+                formStep.classList.remove('active');
+            });
+            document.getElementById('formStep' + step).classList.add('active');
+            
+            document.querySelectorAll('.step').forEach(stepEl => {
+                stepEl.classList.remove('active');
+            });
+            document.getElementById('step' + step).classList.add('active');
+            
+            // Actualizar información según el paso
+            if (step === 2) {
+                updateAvailableClasses();
+            } else if (step === 4) {
+                updateConfirmationDetails();
+                generateBookingCode();
+            }
+        }
+        
+        function prevStep(step) {
+            nextStep(step);
+        }
+        
+        // Generar calendario
+        function generateCalendar(month, year) {
+            const calendarDates = document.getElementById('calendarDates');
+            calendarDates.innerHTML = '';
+            
+            // Días de la semana
+            const days = ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'];
+            days.forEach(day => {
+                const dayElement = document.createElement('div');
+                dayElement.className = 'calendar-day';
+                dayElement.textContent = day;
+                calendarDates.appendChild(dayElement);
+            });
+            
+            // Primer día del mes
+            const firstDay = new Date(year, month, 1).getDay();
+            
+            // Último día del mes
+            const lastDate = new Date(year, month + 1, 0).getDate();
+            
+            // Días del mes anterior
+            const prevLastDate = new Date(year, month, 0).getDate();
+            
+            // Rellenar días del mes anterior
+            for (let i = firstDay; i > 0; i--) {
+                const dateElement = document.createElement('div');
+                dateElement.className = 'calendar-date disabled';
+                dateElement.textContent = prevLastDate - i + 1;
+                calendarDates.appendChild(dateElement);
+            }
+            
+            // Días del mes actual
+            const today = new Date();
+            for (let i = 1; i <= lastDate; i++) {
+                const dateElement = document.createElement('div');
+                dateElement.className = 'calendar-date';
+                dateElement.textContent = i;
+                
+                // Marcar fecha actual
+                if (i === today.getDate() && month === today.getMonth() && year === today.getFullYear()) {
+                    dateElement.classList.add('selected');
+                    selectedDate = new Date(year, month, i);
+                }
+                
+                dateElement.addEventListener('click', function() {
+                    if (!this.classList.contains('disabled')) {
+                        document.querySelectorAll('.calendar-date').forEach(date => {
+                            date.classList.remove('selected');
+                        });
+                        this.classList.add('selected');
+                        selectedDate = new Date(year, month, parseInt(this.textContent));
+                    }
+                });
+                
+                calendarDates.appendChild(dateElement);
+            }
+            
+            // Actualizar mes y año mostrado
+            const monthNames = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+            document.getElementById('currentMonth').textContent = `${monthNames[month]} ${year}`;
+        }
+        
+        // Actualizar clases disponibles
+        function updateAvailableClasses() {
+            const availableClassesContainer = document.getElementById('availableClasses');
+            availableClassesContainer.innerHTML = '';
+            
+            if (!selectedDate) {
+                availableClassesContainer.innerHTML = '<p>Por favor, selecciona una fecha primero.</p>';
+                return;
+            }
+            
+            // Mostrar fecha seleccionada
+            document.getElementById('selectedDateDisplay').textContent = selectedDate.toLocaleDateString('es-ES', { 
+                weekday: 'long', 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric' 
+            });
+            
+            // Generar clases disponibles (simuladas)
+            const classSlots = [
+                { type: 'reformers', time: '08:00', instructor: 'Ana Martínez', available: 2 },
+                { type: 'yoga', time: '09:30', instructor: 'Carlos Rodríguez', available: 5 },
+                { type: 'hot-pilates', time: '11:00', instructor: 'María González', available: 0 },
+                { type: 'reformers', time: '16:00', instructor: 'Laura Silva', available: 1 },
+                { type: 'yoga', time: '17:30', instructor: 'David Chen', available: 7 },
+                { type: 'hot-pilates', time: '19:00', instructor: 'Sofia Ramirez', available: 3 }
+            ];
+            
+            classSlots.forEach(slot => {
+                const classType = classTypes[slot.type];
+                const classSlot = document.createElement('div');
+                classSlot.className = `class-slot ${slot.available === 0 ? 'disabled' : ''}`;
+                
+                const availabilityClass = slot.available === 0 ? 'class-full' : 
+                                        slot.available < 3 ? 'class-warning' : 'class-available';
+                
+                classSlot.innerHTML = `
+                    <div class="class-info">
+                        <div class="class-time">${slot.time} - ${classType.name}</div>
+                        <div>Instructor: ${slot.instructor}</div>
+                        <div class="class-availability ${availabilityClass}">
+                            ${slot.available === 0 ? 'CUPO LLENO' : `${slot.available}/${classType.capacity} cupos disponibles`}
+                        </div>
+                    </div>
+                    ${slot.available > 0 ? 
+                        `<button class="btn" onclick="selectClass('${slot.type}', '${slot.time}', '${slot.instructor}')">Seleccionar</button>` : 
+                        `<button class="btn" disabled>No disponible</button>`
+                    }
+                `;
+                
+                availableClassesContainer.appendChild(classSlot);
+            });
+        }
+        
+        // Seleccionar clase
+        function selectClass(classType, time, instructor) {
+            selectedClass = {
+                type: classType,
+                time: time,
+                instructor: instructor,
+                ...classTypes[classType]
+            };
+            
+            // Remover selección previa
+            document.querySelectorAll('.class-slot').forEach(slot => {
+                slot.classList.remove('selected');
+            });
+            
+            // Marcar como seleccionado (en una implementación real, se marcaría visualmente)
+            nextStep(3);
+        }
+        
+        // Actualizar detalles de confirmación
+        function updateConfirmationDetails() {
+            if (selectedClass) {
+                document.getElementById('confClassType').innerHTML = `<strong>Clase:</strong> ${selectedClass.name}`;
+                document.getElementById('confDate').innerHTML = `<strong>Fecha:</strong> ${selectedDate.toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' })}`;
+                document.getElementById('confTime').innerHTML = `<strong>Hora:</strong> ${selectedClass.time}`;
+                document.getElementById('confDuration').innerHTML = `<strong>Duración:</strong> ${selectedClass.duration}`;
+                document.getElementById('confInstructor').innerHTML = `<strong>Instructor:</strong> ${selectedClass.instructor}`;
+            }
+            
+            // Datos personales
+            document.getElementById('confName').innerHTML = `<strong>Nombre:</strong> ${document.getElementById('name').value}`;
+            document.getElementById('confEmail').innerHTML = `<strong>Email:</strong> ${document.getElementById('email').value}`;
+            document.getElementById('confPhone').innerHTML = `<strong>Teléfono:</strong> ${document.getElementById('phone').value}`;
+        }
+        
+        // Generar código de reserva
+        function generateBookingCode() {
+            const code = 'ES-' + new Date().getFullYear() + '-' + Math.floor(1000 + Math.random() * 9000);
+            document.getElementById('bookingCode').textContent = code;
+        }
+        
+        // Enviar reserva
+        function submitBooking() {
+            // Validar que todos los campos estén completos
+            if (!selectedDate || !selectedClass || !document.getElementById('name').value || 
+                !document.getElementById('email').value || !document.getElementById('phone').value) {
+                alert('Por favor, completa todos los campos antes de confirmar la reserva.');
+                return;
+            }
+            
+            // En una aplicación real, aquí se procesaría el pago
+            alert('¡Reserva confirmada! Serás redirigido al proceso de pago. Tu código de confirmación es: ' + document.getElementById('bookingCode').textContent);
+            
+            // Reiniciar formulario
+            document.querySelectorAll('.form-step').forEach(formStep => {
+                formStep.classList.remove('active');
+            });
+            document.getElementById('formStep1').classList.add('active');
+            
+            document.querySelectorAll('.step').forEach(stepEl => {
+                stepEl.classList.remove('active', 'completed');
+            });
+            document.getElementById('step1').classList.add('active');
+            
+            // Limpiar campos
+            document.getElementById('name').value = '';
+            document.getElementById('email').value = '';
+            document.getElementById('phone').value = '';
+            document.getElementById('notes').value = '';
+            
+            selectedDate = null;
+            selectedClass = null;
+            
+            // Volver al inicio
+            showPage('home');
+        }
+        
+        // Navegación del calendario
+        document.getElementById('prevMonth').addEventListener('click', function() {
+            currentMonth--;
+            if (currentMonth < 0) {
+                currentMonth = 11;
+                currentYear--;
+            }
+            generateCalendar(currentMonth, currentYear);
+        });
+        
+        document.getElementById('nextMonth').addEventListener('click', function() {
+            currentMonth++;
+            if (currentMonth > 11) {
+                currentMonth = 0;
+                currentYear++;
+            }
+            generateCalendar(currentMonth, currentYear);
+        });
+        
+        // Envío del formulario de contacto
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('¡Mensaje enviado! Te contactaremos pronto.');
+            this.reset();
+        });
+        
+        // Prevenir comportamiento por defecto de todos los enlaces de navegación
+        document.querySelectorAll('.nav-links a, .logo, .mobile-nav-links a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+            });
+        });
+        
+        // Inicializar calendario
+        generateCalendar(currentMonth, currentYear);
+    </script>
+</body>
+</html>
